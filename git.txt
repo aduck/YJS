@@ -1,4 +1,4 @@
-git指令
+*常用git指令
 --常用文件操作指令
 	$ mkdir xx	新建文件夹(新建仓库)
 	$ cd xx		切换到xx目录
@@ -13,5 +13,18 @@ git指令
 	$ git log		查看commit提交历史记录
 	$ git reset --hard HEAD^回退到上一个版本
 	$ git reset --hard xx	回退到具体版本,xx为具体版本号
+	$ git reset HEAD xx.txt	把xx.txt在暂存区的修改撤销掉,重新放回工作区
 	$ git reflog		查看命令历史
-	$ git checkout --xx.txt	把xx.txt在工作区的修改全部撤销
+	$ git checkout -- xx.txt把xx.txt在工作区的修改全部撤销
+--远程仓库指令
+	$ git remote add origin git@github.com:aduck/YJS.git	关联远程库
+	$ git push -u origin master				初次推送本地库所有内容到远程库
+	$ git push origin master				推送本地库所有内容到远程库
+	$ git pull origin master				把远程库内容取到本地库
+	$ git clone git@github.com:aduck/YJS.git		从远程克隆一个本地库
+--分支指令
+	$ git checkout -b dev		创建并切换到dev分支
+	$ git branch dev		创建分支
+	$ git checkout dev		切换分支
+	$ git merge dev			合并分支到当前分支
+	$ git branch -d dev		删除分支
