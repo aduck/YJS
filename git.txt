@@ -17,9 +17,12 @@
 	$ git reflog		查看命令历史
 	$ git checkout -- xx.txt把xx.txt在工作区的修改全部撤销
 --远程仓库指令
+	$ git remote						查看远程库信息
 	$ git remote add origin git@github.com:aduck/YJS.git	关联远程库
 	$ git push -u origin master				初次推送本地库所有内容到远程库
 	$ git push origin master				推送本地库所有内容到远程库
+	$ git pull						push推送失败时,把最新的提交从origin/dev抓下来,然后,在本地合并,解决冲突,再推送
+	$ git branch --set-upstream dev origin/dev		指定本地dev分支与远程origin/dev分支的链接
 	$ git pull origin master				把远程库内容取到本地库
 	$ git clone git@github.com:aduck/YJS.git		从远程克隆一个本地库
 --分支指令
@@ -28,3 +31,7 @@
 	$ git checkout dev		切换分支
 	$ git merge dev			合并分支到当前分支
 	$ git branch -d dev		删除分支
+
+
+--冲突解决
+	分支版本不一致合并时发生冲突，手动解决冲突
