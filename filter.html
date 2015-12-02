@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>筛选</title>
+<style>
+*{margin:0;padding:0;}	
+body{font-size:1.1rem;}
+.pull-left{float:left;}
+.pull-right{float:right;}
+.text-center{text-align:center;}
+h2{font-weight:normal;}
+#filters-box{font-family:"Microsoft Yahei";background:#f2f2f2;position:fixed;width:100%;height:100%;left:0;top:0;z-index:99;}
+.filter-header{color:#333;background:#fff;position:fixed;left:0;top:0;width:100%;border-bottom:1px solid #dfdfdf;}
+.filter-header h2{padding:0 1rem;line-height:4rem;font-size:1.5rem;}
+.filter-header h2 span{font-size:1.1rem;color:#999;}
+.filter-container{padding-top:5rem;}
+.filter-option,.filter-item{padding:0 1rem;line-height:3.5rem;border-bottom:1px solid #dfdfdf;font-size:1.2rem;background:#fff;}
+.filter-option span{color:#999;padding-right:1rem;background:url(http://file.easeeyes.com/wap/images/select_arrow.png) no-repeat right center;background-size:auto 1rem;}
+.filter-clearbtn{padding-top:2rem;}
+.filter-clearbtn button{background:#fff;border:1px solid #ccc;padding:0 2rem;line-height:3rem;}
+.filter-item{display:block;}
+</style>
+</head>
+<body>
+<button id="nowChoose">run</button>	
+<!--筛选主体-->
+<div id="filters-box" class="filter filter-right" style="display:none;">
+	<div id="filter-option-box">
+		<div class="filter-header">
+			<h2 class="text-center">
+				<span class="pull-left" onclick="pop1.close();">取消</span>
+				<span class="pull-right" id="submit">确定</span>
+				筛选
+			</h2>
+		</div>	
+		<div class="filter-container">
+			<div class="filter-option" id="filter-option_01" data-key="brand"><span class="pull-right">全部</span>品牌</div>
+			<div class="filter-option" id="filter-option_02" data-key="period"><span class="pull-right">全部</span>周期</div>
+			<div class="filter-option" id="filter-option_03" data-key="color"><span class="pull-right">全部</span>颜色</div>
+			<div class="filter-option" id="filter-option_04" data-key="moisture"><span class="pull-right">全部</span>含水量</div>
+			<div class="filter-option" id="filter-option_05" data-key="diameter"><span class="pull-right">全部</span>直径</div>
+			<div class="filter-option" id="filter-option_06" data-key="curve"><span class="pull-right">全部</span>基弧</div>
+			<div class="filter-option" id="filter-option_07" data-key="price"><span class="pull-right">全部</span>价格</div>
+		</div>
+		<div class="filter-clearbtn text-center">
+			<button id="clearfilter">清除选项</button>
+		</div>
+	</div>
+	<div id="filter-detail-tpl-01" style="display:none">
+		<div class="filter-header">
+			<h2 class="text-center">
+				品牌
+			</h2>
+		</div>
+		<div class="filter-container">
+			<div class="filter-item" data-item='{"key":"brand","value":"","name":"全部"}'>全部</div>
+			<div class="filter-item" data-item='{"key":"brand","value":"qs","name":"强生"}'>强生</div>
+			<div class="filter-item" data-item='{"key":"brand","value":"hc","name":"海昌"}'>海昌</div>
+		</div>
+	</div>
+	<div id="filter-detail-tpl-02" style="display:none">
+		<div class="filter-header">
+			<h2 class="text-center">
+				周期
+			</h2>
+		</div>
+		<div class="filter-container">
+			<div class="filter-item" data-item='{"key":"period","value":"","name":"全部"}'>全部</div>
+			<div class="filter-item" data-item='{"key":"period","value":"1","name":"1周抛"}'>1周抛</div>
+			<div class="filter-item" data-item='{"key":"period","value":"2","name":"2周抛"}'>2周抛</div>
+		</div>
+	</div>
+	<div id="filter-detail-tpl-03" style="display:none">
+		<div class="filter-header">
+			<h2 class="text-center">
+				颜色
+			</h2>
+		</div>
+		<div class="filter-container">
+			<div class="filter-item" data-item='{"key":"color","value":"","name":"全部"}'>全部</div>
+			<div class="filter-item" data-item='{"key":"color","value":"red","name":"红"}'>红</div>
+			<div class="filter-item" data-item='{"key":"color","value":"yellow","name":"黄"}'>黄</div>
+		</div>
+	</div>
+	<div id="filter-detail-tpl-04" style="display:none">
+		<div class="filter-header">
+			<h2 class="text-center">
+				含水量
+			</h2>
+		</div>
+		<div class="filter-container">
+			<div class="filter-item" data-item='{"key":"moisture","value":"","name":"全部"}'>全部</div>
+			<div class="filter-item" data-item='{"key":"moisture","value":"1","name":"1ml"}'>1ml</div>
+			<div class="filter-item" data-item='{"key":"moisture","value":"1","name":"2ml"}'>2ml</div>
+		</div>
+	</div>
+	<div id="filter-detail-tpl-05" style="display:none">
+		<div class="filter-header">
+			<h2 class="text-center">
+				直径
+			</h2>
+		</div>
+		<div class="filter-container">
+			<div class="filter-item" data-item='{"key":"diameter","value":"","name":"全部"}'>全部</div>
+			<div class="filter-item" data-item='{"key":"diameter","value":"1","name":"1mm"}'>1mm</div>
+			<div class="filter-item" data-item='{"key":"diameter","value":"2","name":"2mm"}'>2mm</div>
+		</div>
+	</div>
+	<div id="filter-detail-tpl-06" style="display:none">
+		<div class="filter-header">
+			<h2 class="text-center">
+				基弧
+			</h2>
+		</div>
+		<div class="filter-container">
+			<div class="filter-item" data-item='{"key":"curve","value":"","name":"全部"}'>全部</div>
+			<div class="filter-item" data-item='{"key":"curve","value":"30","name":"30"}'>30</div>
+			<div class="filter-item" data-item='{"key":"curve","value":"60","name":"60"}'>60</div>
+		</div>
+	</div>
+	<div id="filter-detail-tpl-07" style="display:none">
+		<div class="filter-header">
+			<h2 class="text-center">
+				价格
+			</h2>
+		</div>
+		<div class="filter-container">
+			<div class="filter-item" data-item='{"key":"price","value":"","name":"全部"}'>全部</div>
+			<div class="filter-item" data-item='{"key":"price","value":"100","name":"100"}'>100</div>
+			<div class="filter-item" data-item='{"key":"price","value":"200","name":"200"}'>200</div>
+		</div>
+	</div>
+</div>
+<script src="http://file.easeeyes.com/wap/js/wappop.js"></script>
+<script>
+//自适应代码
+(function(){
+    var win=window||{},
+        doc=document,
+        root=doc.documentElement;
+    function changeSize(){
+        root.style.fontSize=parseInt(root.clientWidth)*20/640>20?"20px":parseInt(root.clientWidth)*20/640+"px";
+    }
+    if(doc.addEventListener){
+        var evt="orientationchange" in win?"orientationchange":"resize"; 
+        doc.addEventListener(evt,changeSize,false);
+        doc.addEventListener("DOMContentLoaded",changeSize,false);
+    }
+})();    
+
+// 执行
+var pop1=new Pop({id:"filters-box"}),
+	pop2=new Pop({id:"filter-option-box"});
+document.getElementById("nowChoose").addEventListener("click",function(){
+	pop1.open();
+	pop2.open();
+},false);
+
+/*
+*	key 为键值
+*	value 为值
+*	name 为显示数据
+*/
+var options=Array.prototype.slice.call(document.querySelectorAll(".filter-option"),0),	// 筛选条件
+	items=Array.prototype.slice.call(document.querySelectorAll(".filter-item"),0),	// 选项
+	num,
+	filter={};	// 筛选结果
+/*绑定条件和选项*/	
+options.forEach(function(option){
+	option.addEventListener("click",function(){
+		num=this.id.split("_")[1];
+		pop2.close();
+		document.getElementById("filter-detail-tpl-"+num).style.display="block";
+	},false);
+});
+/*保存数据和dom控制*/
+items.forEach(function(item){
+	item.addEventListener("click",function(){
+		var itemData=JSON.parse(this.dataset.item);
+		filter[itemData.key]=itemData.value;	// 保存结果
+		//console.log(filter)
+		refresh(itemData);  // 选中数据前台显示
+		document.getElementById("filter-detail-tpl-"+num).style.display="none";
+		pop2.open();
+	},false);
+})
+function refresh(item){
+	options.forEach(function(option){
+		if(option.dataset.key==item.key){
+			option.getElementsByTagName("span")[0].innerHTML=item.name;
+		}
+	});
+}
+// 点击清除选项
+document.getElementById("clearfilter").addEventListener("click",function(){
+	filter={};
+	options.forEach(function(option){
+		option.getElementsByTagName("span")[0].innerHTML="全部";
+	});
+},false);
+// 点击确定按钮，filter为所有条件
+document.getElementById("submit").addEventListener("click",function(){
+	console.log(JSON.stringify(filter));
+
+},false);
+</script>
+</body>
+</html>
