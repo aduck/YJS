@@ -1,0 +1,30 @@
+request请求
+请求方法Method:GET,POST,PUT,DELETE,HEAD,OPTIONS
+头部信息HEAD={
+	Accept:指定客户端能够接收的内容类型(image/webp,image/*,*/*;q=0.8),
+	Accept-Encoding:指定浏览器可以支持的web服务器返回内容压缩编码类型。(gzip,deflate,sdch)
+	Accept-Language:浏览器可接受的语言(zh-CN,zh;q=0.8)
+	Cache-Control:指定请求和响应遵循的缓存机制(no-cache)
+	Connection:表示是否需要持久连接（HTTP 1.1默认进行持久连接）(keep-alive)
+	Cookie:HTTP请求发送时,会把保存在该请求域名下的所有cookie值一起发送给web服务器。(username=demo;expires=;path=;domain=;)
+	Host:指定请求的服务器的域名和端口号(127.0.0.1:80)
+	Pragma:用来包含实现特定的指令(no-cache)
+	Referer:先前网页的地址(ttp://www.easeeyes.com/)
+	User-Agent:包含发出请求的用户信息(Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36)
+}
+请求字符串
+q1=v1&q2=v2&q3=v3
+		
+response响应
+响应状态Status:200,304,404,500
+头部信息HEAD={
+	Accept-Ranges:表明服务器是否支持指定范围请求及哪种类型的分段请求(bytes)
+	Connection:连接状态(close)
+	Content-Length:响应体的长度(3570)
+	Content-Type:返回内容的MIME类型(image/gif)
+	Date:原始服务器消息发出的时间(Wed, 02 Dec 2015 05:21:09 GMT)
+	ETag:请求变量的实体标签的当前值("16e200-df2-5018278589200")
+	Last-Modified:请求资源的最后修改时间(Tue, 26 Aug 2014 06:32:40 GMT)
+	Server:web服务器软件名称(Apache/2.2.15 (CentOS))
+}	
+响应实体
